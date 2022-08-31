@@ -1,5 +1,5 @@
 import "./App.css"
-import Example, { Counter } from "./Example"
+import Example from "./Example"
 
 function App() {
   return (
