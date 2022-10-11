@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# Thinking in React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+When you build a user interface with React, you will first break it apart to **components**.
+Then you describe the different **visual states** for each of your components.
+Finally, you will connect the components together so that **data flows** between them.
 
-## Available Scripts
+## Start with the mockup
 
-In the project directory, you can run:
+We already have a mockup design to work with and a JSON API test data.
 
-### `npm start`
+To implementa UI in React, you will usually follow the same five steps.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 1. Break the UI into a component hierarchy
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Start by drawing boxes around every component and subcomponent in the mockup and naming them.
 
-### `npm test`
+We can split the design in different way:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Programming: using the [single responsibility pricinple](https://en.wikipedia.org/wiki/Single_responsibility_principle) which says: "A module should be responsible to one, and only one actor." A component should do only one thing.
+- CSS: consider what you would make a class selector for.
+- Design: how you would organize the design's layers
 
-### `npm run build`
+If the JSON is well structured, it will naturally map to the component structure of the UI.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+In this example app we have five components:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. FilterableProductTable - contains the entire app
+2. SearchBar - receives user input
+3. ProductTable - displays and filters the lsit according to user input
+4. ProductCategoryRow - displays the heading for each category
+5. ProductRow - displays a row for each product
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+After we have defines the components in the mockup, we arrange them into a hierarchy.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- FilterableProductTable
+  - SearchBar
+  - ProductTable
+    - ProductCategoryRow
+    - ProductRow
