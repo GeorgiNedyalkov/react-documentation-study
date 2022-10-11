@@ -49,3 +49,63 @@ Because for now its static, the component only return JSX. The top component (Fi
 This is a **one-way data flow** because data flows from top-level component to the ones at the bottom of the three.
 
 ## 3. Find the minimal but complete representation of the UI state
+
+The make the UI interactive, we need the users to change the underlying data model. This is why we use state.
+
+Think of state as the minimal set of changing data that the app needs to remember. The most important principle for structuring data
+is [DRY Don't Repeat Yourslef](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) which says:
+"Every piece of knowledge must have a single, unambigious representation within a system."
+
+Figure out the absolute minimal representation of state that the application needs and compute everything else on demand.
+
+Here are all the pieces of data in this example application:
+
+1. The original list of products
+2. The search text the user has enetered **state**
+3. The value of the checkbox **state**
+4. The filtered list of products
+
+To figure out which of these needs state. Here are some questions we can ask ourselves:
+
+- Does it remain unchanged over time? If so, it isn't state.
+- Is it passed in from a parent via props? If so, it isn't state.
+- Can you compute it based on existing state or props in your component? If so, it definitely isn't state.
+
+**DEEP DIVE**
+
+## Props vs State
+
+There are two types of "model" data in React apps: props and state
+
+- **Props** are like arguments you pass to a function. They let a parent component pass data to a child component.
+- **State** is lika component's memory. It let's component keep track of some information and change it in response
+  to iterations.
+
+Props and state are different, but they work together. A parent component will often keep some information in state
+(so that it can change it) and pass it down to child components as their props.
+
+## 4. Identify where state should live
+
+We need to figure out which component is responsible for changing this state or owns the state.
+React uses a one-way data flow which means we need to determine which component should own state.
+We can do this following these steps:
+
+1. Identify every component that renders something based on that state.
+2. Find their closes common parent component - a component above them in all the hierarchy.
+3. Decide where state should live:
+   1. Often we can put state directly into their common parent
+   2. We can also put state in some component above their common parent.
+   3. If there isn't one, create a new component solely for the holding the state and add it somewhere in the hierarchy above the common parent component
+
+Now let's run through them
+
+1. Components that use state
+
+- ProductTable: need to filter the product list based on that state (search text and checkbox value)
+- SearchBar: Needs to display that state (search text and cehckbox value)
+
+2. Find their common parent
+
+The first component that both of them share is FilterableProductTable.
+
+3. Decide where state should live => FilterableProductTable

@@ -1,3 +1,4 @@
+import React, { useState } from "react"
 import "./App.css"
 
 function App() {
@@ -9,31 +10,46 @@ function App() {
 }
 
 function FilterableProductTable({ products }) {
+  const [filterText, setFilterText] = useState("")
+  const [inStockOnly, setInStockOnly] = useState(false)
+
   return (
-    <section className="filterableProductTable">
-      <SearchBar />
-      <ProductTable products={products} />
-    </section>
+    <main className="filterableProductTable">
+      <SearchBar isStockOnly={inStockOnly} filterText={filterText} />
+      <ProductTable
+        products={products}
+        filterText={filterText}
+        isStockOnly={inStockOnly}
+      />
+    </main>
   )
 }
 
-function SearchBar() {
+function SearchBar({ filterText, inStockOnly }) {
   return (
     <form>
-      <input type="text" placeholder="Search..." />
-      <label htmlFor="stocked">
-        <input type="checkbox" />
+      <input type="text" value={filterText} placeholder="Search..." />
+      <label>
+        <input type="checkbox" checked={inStockOnly} />
         Only show products in stock
       </label>
     </form>
   )
 }
 
-function ProductTable({ products }) {
+function ProductTable({ products, filterText, inStockOnly }) {
   const rows = []
   let lastCategory = null
 
   products.forEach((product) => {
+    if (product.name.toLowerCase().indexOf(filterText.toLowerCase()) === -1) {
+      return
+    }
+
+    if (inStockOnly && !product.stocked) {
+      return
+    }
+
     if (product.category !== lastCategory) {
       rows.push(
         <ProductCategoryRow
