@@ -43,3 +43,9 @@ After we have defines the components in the mockup, we arrange them into a hiera
 It's time to implement the app.
 
 The first thing to do is build a version that renders the UI of the data model without any interactivity. To do this we want to build components, using other components and pass data using props. Don't use state at all to build a static version. State is reserved only for interactivity.
+
+After building the components, we have a library of reusable compoennts that render the data model.
+Because for now its static, the component only return JSX. The top component (FilterableProductTable) takes the data model as a prop.
+This is a **one-way data flow** because data flows from top-level component to the ones at the bottom of the three.
+
+## 3. Find the minimal but complete representation of the UI state

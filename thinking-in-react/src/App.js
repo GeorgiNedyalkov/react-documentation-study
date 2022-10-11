@@ -19,11 +19,12 @@ function FilterableProductTable({ products }) {
 
 function SearchBar() {
   return (
-    <form className="searchBar">
+    <form>
       <input type="text" placeholder="Search..." />
-      <br />
-      <input type="checkbox" id="stocked" />
-      <label htmlFor="stocked">Only show products in stock</label>
+      <label htmlFor="stocked">
+        <input type="checkbox" />
+        Only show products in stock
+      </label>
     </form>
   )
 }
@@ -42,11 +43,12 @@ function ProductTable({ products }) {
       )
     }
     rows.push(<ProductRow product={product} key={product.name} />)
+
     lastCategory = product.category
   })
 
   return (
-    <table className="productTable">
+    <table>
       <thead>
         <tr>
           <th>Name</th>
