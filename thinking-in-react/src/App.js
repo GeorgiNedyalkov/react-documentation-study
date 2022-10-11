@@ -1,27 +1,82 @@
-import { tab } from "@testing-library/user-event/dist/tab"
 import "./App.css"
 
 function App() {
   return (
     <div className="app">
-      <FilterableProductTable />
+      <FilterableProductTable products={PRODUCTS} />
     </div>
   )
 }
 
-function FilterableProductTable() {
+function FilterableProductTable({ products }) {
   return (
     <section className="filterableProductTable">
       <SearchBar />
+      <ProductTable products={products} />
     </section>
   )
 }
 
 function SearchBar() {
   return (
-    <div className="searchBar">
+    <form className="searchBar">
       <input type="text" placeholder="Search..." />
-    </div>
+      <br />
+      <input type="checkbox" id="stocked" />
+      <label htmlFor="stocked">Only show products in stock</label>
+    </form>
+  )
+}
+
+function ProductTable({ products }) {
+  const rows = []
+  let lastCategory = null
+
+  products.forEach((product) => {
+    if (product.category !== lastCategory) {
+      rows.push(
+        <ProductCategoryRow
+          category={product.category}
+          key={product.category}
+        />
+      )
+    }
+    rows.push(<ProductRow product={product} key={product.name} />)
+    lastCategory = product.category
+  })
+
+  return (
+    <table className="productTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>{rows}</tbody>
+    </table>
+  )
+}
+
+function ProductCategoryRow({ category }) {
+  return (
+    <tr>
+      <th colSpan="2">{category}</th>
+    </tr>
+  )
+}
+
+function ProductRow({ product }) {
+  const name = product.stocked ? (
+    product.name
+  ) : (
+    <span style={{ color: "red" }}>{product.name}</span>
+  )
+  return (
+    <tr>
+      <td>{name}</td>
+      <td>{product.price}</td>
+    </tr>
   )
 }
 
