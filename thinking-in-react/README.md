@@ -109,3 +109,13 @@ Now let's run through them
 The first component that both of them share is FilterableProductTable.
 
 3. Decide where state should live => FilterableProductTable
+
+## 5. Add inverse data flow
+
+To change the state of user input we need to reverse the data flow from our child component to the components which owns state.
+
+First, we need to pass the state callback function which change state(setFilterText, setInStockOnly)
+
+Then set the onchange event target value and checked properties to state.
+
+## Refactor components into separate files.
