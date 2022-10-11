@@ -18,7 +18,7 @@ export default function FilterableProductTable({ products }) {
       <ProductTable
         products={products}
         filterText={filterText}
-        isStockOnly={inStockOnly}
+        inStockOnly={inStockOnly}
       />
     </main>
   )
