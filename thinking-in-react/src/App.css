@@ -1,0 +1,15 @@
+.app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+}
+
+.filterableProductTable {
+    width: 30vw;
+}
+
+.searchBar {
+    border: 1px solid blue;
+    padding: 20px;
+}

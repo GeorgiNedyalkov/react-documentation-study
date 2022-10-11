@@ -1,9 +1,26 @@
+import { tab } from "@testing-library/user-event/dist/tab"
 import "./App.css"
 
 function App() {
   return (
-    <div className="App">
-      <h1>Thinking in React</h1>
+    <div className="app">
+      <FilterableProductTable />
+    </div>
+  )
+}
+
+function FilterableProductTable() {
+  return (
+    <section className="filterableProductTable">
+      <SearchBar />
+    </section>
+  )
+}
+
+function SearchBar() {
+  return (
+    <div className="searchBar">
+      <input type="text" placeholder="Search..." />
     </div>
   )
 }

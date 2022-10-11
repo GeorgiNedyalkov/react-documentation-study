@@ -37,3 +37,9 @@ After we have defines the components in the mockup, we arrange them into a hiera
   - ProductTable
     - ProductCategoryRow
     - ProductRow
+
+## 2. Build a static version in React
+
+It's time to implement the app.
+
+The first thing to do is build a version that renders the UI of the data model without any interactivity. To do this we want to build components, using other components and pass data using props. Don't use state at all to build a static version. State is reserved only for interactivity.
